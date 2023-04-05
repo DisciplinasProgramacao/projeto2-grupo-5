@@ -1,4 +1,6 @@
-/** 
+import java.sql.Array;
+
+/**
  * Classe básica para um Grafo simples não direcionado.
  */
 public class Grafo {
@@ -50,11 +52,11 @@ public class Grafo {
     }
 
     public Vertice removeVertice(int id){
-        return null;
+        return this.vertices.remove(id);
     }
 
     public Vertice existeVertice(int idVertice){
-        return null;
+        return this.vertices.find(idVertice);
     }
 
     /**
@@ -73,35 +75,56 @@ public class Grafo {
             adicionou = (saida.addAresta(destino, peso)&&chegada.addAresta(origem, peso));
         }
         return adicionou;
-
     }
 
 
     public Aresta removeAresta(int origem, int destino){
-        return null;
+        Vertice saida = this.existeVertice(origem);
+        return saida.removeAresta(destino);
     }
 
     public Aresta existeAresta(int verticeA, int verticeB){
-       return null;
+        Vertice saida = existeVertice(verticeA);
+        return saida.existeAresta(verticeB);
     }
-    
-    
+
+    public int qtdArestas(){
+        int qtdArestas = 0;
+        int qtdVertices = ordem();
+        Vertice [] array = new Vertice[qtdVertices];
+        Vertice [] arrayVertices = this.vertices.allElements(array);
+        for (Vertice vertice:
+                arrayVertices) {
+            qtdArestas += vertice.grau();
+        }
+
+        return qtdArestas / 2;
+    }
+
     public boolean completo(){
-       return false;
+        int qtdArestas = qtdArestas();
+        int qtdVertices = ordem();
+        int e = qtdVertices * (qtdVertices - 1) / 2;
+
+        if (qtdArestas  == e){
+            return true;
+        }
+        return false;
     }
 
     public Grafo subGrafo(Lista<Integer> vertices){
         Grafo subgrafo = new Grafo("Subgrafo de "+this.nome);
-        
         return subgrafo;
     }
     
     public int tamanho(){
-        return Integer.MIN_VALUE;
+        int qtdVertices = ordem();
+        int qtdArestas = qtdArestas();
+        return qtdVertices + qtdArestas;
     }
 
     public int ordem(){
-        return Integer.MIN_VALUE;
+        return this.vertices.size();
     }
 
 }
