@@ -51,11 +51,21 @@ public class Grafo {
         return this.vertices.add(id, novo);
     }
 
+    /**
+     * Remove um vértice com o id especificado.
+     * @param id O identificador do vértice a ser removido
+     * @return O vértice removido, ou null se não existir
+     */
     public Vertice removeVertice(int id){
         return this.vertices.remove(id);
     }
 
-    public Vertice existeVertice(int idVertice){
+    /**
+     * Verifica se um vértice com id especificado existe no grafo.
+     * @param idVertice O identificador do vértice a ser encotrado
+     * @return O vértice encotrado, ou null se não existir
+     */
+      public Vertice existeVertice(int idVertice){
         return this.vertices.find(idVertice);
     }
 
@@ -78,29 +88,51 @@ public class Grafo {
     }
 
 
+    /**
+     * Adiciona uma aresta entre dois vértices do grafo, caso o vérice de origem exista e indicando
+     * o vértice de destino.
+     * @param origem Vértice de origem
+     * @param destino Vértice de destino
+     * @return A aresta removida, ou null se não existir
+     */
     public Aresta removeAresta(int origem, int destino){
         Vertice saida = this.existeVertice(origem);
         return saida.removeAresta(destino);
     }
 
+    /**
+     * Verifica se uma aresta exite entre dois vértices, caso o vérice de origem exista e indicando
+     * o vértice de destino.
+     * @param verticeA Vértice de origem
+     * @param verticeB Vértice de destino
+     * @return A aresta encotrada, ou null se não existir
+     */
     public Aresta existeAresta(int verticeA, int verticeB){
         Vertice saida = existeVertice(verticeA);
         return saida.existeAresta(verticeB);
     }
 
+    /**
+     * Calcula a quantidade de arestas de um grafo a partir da metade da soma dos graus de todos os vértice do grafo
+     * @return A quantidade de arestas
+     */
     public int qtdArestas(){
-        int qtdArestas = 0;
+        int somaGraus = 0;
         int qtdVertices = ordem();
         Vertice [] array = new Vertice[qtdVertices];
         Vertice [] arrayVertices = this.vertices.allElements(array);
         for (Vertice vertice:
                 arrayVertices) {
-            qtdArestas += vertice.grau();
+            somaGraus += vertice.grau();
         }
 
-        return qtdArestas / 2;
+        return somaGraus / 2;
     }
 
+    /**
+     * Verifica se um grafo é completo ou não
+     * @return TRUE se o grafo for completo, FALSE caso contrário
+     */
     public boolean completo(){
         int qtdArestas = qtdArestas();
         int qtdVertices = ordem();
@@ -116,13 +148,21 @@ public class Grafo {
         Grafo subgrafo = new Grafo("Subgrafo de "+this.nome);
         return subgrafo;
     }
-    
+
+    /**
+     * Calcula o tamanho do grafo a partir da soma da quantidade de vértices e arestas
+     * @return O tamanho do grafo
+     */
     public int tamanho(){
         int qtdVertices = ordem();
         int qtdArestas = qtdArestas();
         return qtdVertices + qtdArestas;
     }
 
+    /**
+     * Calcula a ordem do grafo a partir do tamanho da ABB de vértices
+     * @return A ordem do grafo
+     */
     public int ordem(){
         return this.vertices.size();
     }

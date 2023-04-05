@@ -46,7 +46,12 @@ public class Vertice {
     public int getId(){
         return this.id;
     }
-    
+
+     /**
+      * Adiciona uma aresta não ponderada neste vértice para um destino
+      * @param destino Vértice de destino
+      * @return TRUE se foi inserida, FALSE caso já existisse e não foi inserida.
+      */
     public boolean addAresta(int destino){
         return this.arestas.add(destino,new Aresta(0, destino));
     }
@@ -61,7 +66,12 @@ public class Vertice {
         return this.arestas.add(destino,new Aresta(peso, destino));
     }
 
-    
+
+     /**
+      * Verifica se uma aresta existe entre esse véritice e um vértice de destino
+      * @param destino Vértice de destino
+      * @return A aresta encontrada, ou null se não existir
+      */
     public Aresta existeAresta(int destino){
         return this.arestas.find(destino);
     }
@@ -74,7 +84,12 @@ public class Vertice {
     public Aresta removeAresta(int destino){
         return this.arestas.remove(destino);
     }
-  
+
+
+     /**
+      * Calcula o grau desse vértice a partir do tamanho ABB de arestas
+      * @return O grau desse vértice
+      */
     public int grau(){
         return this.arestas.size();
     }
