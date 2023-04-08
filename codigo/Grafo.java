@@ -8,7 +8,19 @@ public class Grafo {
     private ABB<Vertice> vertices;
 
     public static Grafo grafoCompleto(int ordem){
-        return null;
+        Grafo grafoCompleto = new Grafo("Grafo Completo");
+
+        for(int i = 0; i < ordem; i++){
+            grafoCompleto.addVertice(i);
+        }
+
+        for(int i = 0; i < ordem - 1; i++){
+            for (int j = i + 1; j < ordem; j++){
+                grafoCompleto.addAresta(i, j, 0);
+            }
+        }
+
+        return grafoCompleto;
     }
 
     /**
