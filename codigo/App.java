@@ -1,12 +1,23 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 public class App {
 
     public static void main(String[] args) throws Exception {
-        Grafo grafoTeste = Grafo.grafoCompleto(5);
+        Grafo grafoCompleto = Grafo.grafoCompleto(5);
+        Grafo subGrafo = new GrafoDirecionado("Subgrafo");
 
-        System.out.println(grafoTeste.existeVertice(1).getId());
-        System.out.println(grafoTeste.ordem());
-        System.out.println(grafoTeste.qtdArestas());
-        System.out.println(grafoTeste.tamanho());
-        System.out.println(grafoTeste.completo());
+        Lista<Integer> idVertices = new Lista<>();
+        idVertices.add(1);
+        idVertices.add(2);
+        idVertices.add(3);
+
+        subGrafo = grafoTeste.subGrafo((Lista<Integer>) idVertices);
+        System.out.println(subGrafo.existeVertice(3).grau());
+        System.out.println(subGrafo.ordem());
+        System.out.println(subGrafo.qtdArestas());
+        System.out.println(subGrafo.tamanho());
+        System.out.println(subGrafo.completo());
     }
 }

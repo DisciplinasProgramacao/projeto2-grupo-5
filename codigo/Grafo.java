@@ -1,3 +1,5 @@
+import javax.lang.model.element.Element;
+import javax.lang.model.element.TypeElement;
 import java.sql.Array;
 import java.util.ArrayList;
 
@@ -89,10 +91,29 @@ public abstract class Grafo {
         return false;
     }
 
-//    public Grafo subGrafo(Lista<Integer> vertices){
-//        Grafo subgrafo = new Grafo("Subgrafo de "+this.nome);
-//        return subgrafo;
-//    }
+    public Grafo subGrafo(Lista<Integer> vertices){
+        GrafoDirecionado subGrafo = new GrafoDirecionado("subGrafo");
+        Integer [] array = new Integer[vertices.size()];
+        Integer [] arrayVertices = vertices.allElements(array);
+
+        for (Integer v : arrayVertices) {
+            Vertice verticeSubGrafo = this.existeVertice(v);
+            if(verticeSubGrafo != null){
+                subGrafo.addVertice(v);
+            }
+        }
+
+        for (Integer origem : arrayVertices) {
+            for (Integer destino: arrayVertices) {
+                Aresta arestaSubGrafo = this.existeAresta(origem, destino);
+                Vertice saida = this.existeVertice(origem);
+                if((arestaSubGrafo != null) && (saida !=null)){
+                    subGrafo.addAresta(origem, destino, 0);
+                }
+            }
+        }
+        return subGrafo;
+    }
 
     /**
      * Calcula o tamanho do grafo a partir da soma da quantidade de vértices e arestas
