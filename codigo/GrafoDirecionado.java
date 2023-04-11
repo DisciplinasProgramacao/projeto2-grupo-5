@@ -1,7 +1,5 @@
 public class GrafoDirecionado extends GrafoMutavel {
 
-
-
     public GrafoDirecionado(String nome) {
         super(nome);
     }

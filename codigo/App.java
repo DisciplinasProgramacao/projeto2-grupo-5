@@ -13,7 +13,6 @@ public class App {
         idVertices.add(2);
         idVertices.add(3);
 
-        subGrafo = grafoTeste.subGrafo((Lista<Integer>) idVertices);
         System.out.println(subGrafo.existeVertice(3).grau());
         System.out.println(subGrafo.ordem());
         System.out.println(subGrafo.qtdArestas());

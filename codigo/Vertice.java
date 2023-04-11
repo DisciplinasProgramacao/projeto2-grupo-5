@@ -115,4 +115,20 @@ public class Vertice {
     public boolean visitado(){
         return this.visitado;
     }
+
+     /**
+      * Vizinhos de um vertice
+      * @return vizinhos Lista de vizinhos
+      */
+    public Lista<Integer> vizinhos(){
+        Aresta[] tamArestas = new Aresta[arestas.size()];
+        Aresta[] vArestas = arestas.allElements(tamArestas);
+        Lista<Integer> vizinhos = new Lista<>();
+
+        for(Aresta aresta : vArestas){
+            vizinhos.add(aresta.destino());
+        }
+
+        return vizinhos;
+    }
 }
