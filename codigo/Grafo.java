@@ -3,37 +3,27 @@ import java.sql.Array;
 /**
  * Classe básica para um Grafo simples não direcionado.
  */
-public class Grafo {
+public abstract class Grafo {
     public final String nome;
-    private ABB<Vertice> vertices;
+    protected ABB<Vertice> vertices;
 
     public static Grafo grafoCompleto(int ordem){
-        Grafo grafoCompleto = new Grafo("Grafo Completo");
 
-        for(int i = 0; i < ordem; i++){
-            grafoCompleto.addVertice(i);
-        }
-
-        for(int i = 0; i < ordem - 1; i++){
-            for (int j = i + 1; j < ordem; j++){
-                grafoCompleto.addAresta(i, j, 0);
-            }
-        }
-
-        return grafoCompleto;
+        return new GrafoCompleto("Grafo Completo", ordem);
     }
 
     /**
-     * Construtor. Cria um grafo vazio com um nome escolhido pelo usuário. Em caso de nome não informado 
+     * Construtor. Cria um grafo vazio com um nome escolhido pelo usuário. Em caso de nome não informado
      * (string vazia), recebe o nome genérico "Grafo"
      */
     public Grafo(String nome){
-        if(nome.length()==0) 
+        if(nome.length()==0)
             this.nome = "Grafo";
         else
             this.nome = nome;
         this.vertices = new ABB<>();
     }
+
 
     /**
      * Retorna o nome do grafo (string), caso seja necessário em outras classes/sistemas
@@ -51,26 +41,7 @@ public class Grafo {
     public void salvar(String nomeArquivo){
         
     }
-    
-    /**
-     * Adiciona um vértice com o id especificado. Ignora a ação e retorna false se já existir
-     * um vértice com este id
-     * @param id O identificador do vértice a ser criado/adicionado
-     * @return TRUE se houve a inclusão do vértice, FALSE se já existia vértice com este id
-     */
-    public boolean addVertice(int id){
-        Vertice novo = new Vertice(id);
-        return this.vertices.add(id, novo);
-    }
 
-    /**
-     * Remove um vértice com o id especificado.
-     * @param id O identificador do vértice a ser removido
-     * @return O vértice removido, ou null se não existir
-     */
-    public Vertice removeVertice(int id){
-        return this.vertices.remove(id);
-    }
 
     /**
      * Verifica se um vértice com id especificado existe no grafo.
@@ -81,36 +52,6 @@ public class Grafo {
         return this.vertices.find(idVertice);
     }
 
-    /**
-     * Adiciona uma aresta entre dois vértices do grafo, caso os dois vértices existam no grafo. 
-     * Caso a aresta já exista, ou algum dos vértices não existir, o comando é ignorado e retorna FALSE.
-     * @param origem Vértice de origem
-     * @param destino Vértice de destino
-     * @param peso Peso da aresta
-     * @return TRUE se foi inserida, FALSE caso contrário
-     */
-    public boolean addAresta(int origem, int destino, int peso){
-        boolean adicionou = false;
-        Vertice saida = this.existeVertice(origem);
-        Vertice chegada = this.existeVertice(destino);
-        if(saida!=null && chegada !=null){
-            adicionou = (saida.addAresta(destino, peso)&&chegada.addAresta(origem, peso));
-        }
-        return adicionou;
-    }
-
-
-    /**
-     * Adiciona uma aresta entre dois vértices do grafo, caso o vérice de origem exista e indicando
-     * o vértice de destino.
-     * @param origem Vértice de origem
-     * @param destino Vértice de destino
-     * @return A aresta removida, ou null se não existir
-     */
-    public Aresta removeAresta(int origem, int destino){
-        Vertice saida = this.existeVertice(origem);
-        return saida.removeAresta(destino);
-    }
 
     /**
      * Verifica se uma aresta exite entre dois vértices, caso o vérice de origem exista e indicando
@@ -156,10 +97,10 @@ public class Grafo {
         return false;
     }
 
-    public Grafo subGrafo(Lista<Integer> vertices){
-        Grafo subgrafo = new Grafo("Subgrafo de "+this.nome);
-        return subgrafo;
-    }
+//    public Grafo subGrafo(Lista<Integer> vertices){
+//        Grafo subgrafo = new Grafo("Subgrafo de "+this.nome);
+//        return subgrafo;
+//    }
 
     /**
      * Calcula o tamanho do grafo a partir da soma da quantidade de vértices e arestas
