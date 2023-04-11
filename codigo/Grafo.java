@@ -91,7 +91,11 @@ public abstract class Grafo {
         return false;
     }
 
-/*
+    /**
+     * Cria um subgrafo a partir de uma lista de vertices
+     * @param vertices Lista de vétices
+     * @return grafo Subgrafo
+     */
     public Grafo subGrafo(Lista<Integer> vertices){
         GrafoDirecionado subGrafo = new GrafoDirecionado("subGrafo");
         Integer [] array = new Integer[vertices.size()];
@@ -115,7 +119,6 @@ public abstract class Grafo {
         }
         return subGrafo;
     }
-*/
 
     /**
      * Calcula o tamanho do grafo a partir da soma da quantidade de vértices e arestas
@@ -135,4 +138,23 @@ public abstract class Grafo {
         return this.vertices.size();
     }
 
+    /**
+     * Busca em largura
+     * @param idVerticeInicio Vertice de inicio da busca
+     * @return grafo Grafo da busca em largura
+     */
+    public Grafo bfs(int idVerticeInicio){
+        Grafo grafo = new GrafoNaoDirecionado("teste");
+        return grafo;
+    }
+
+    /**
+     * Busca em profundidade
+     * @param idVerticeInicio Vertice de inicio da busca
+     * @return grafo Grafo da busca em profundidade
+     */
+    public Grafo dfs(int idVerticeInicio){
+        Grafo grafo = new GrafoNaoDirecionado("teste");
+        return grafo;
+    }
 }
