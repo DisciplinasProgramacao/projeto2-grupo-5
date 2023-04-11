@@ -1,3 +1,10 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public abstract class GrafoMutavel  extends Grafo{
 
     /**
@@ -58,4 +65,62 @@ public abstract class GrafoMutavel  extends Grafo{
         Vertice saida = this.existeVertice(origem);
         return saida.removeAresta(destino);
     }
+
+    /**
+     * Essa função Java carrega um grafo de um arquivo e cria sua representação de lista de adjacência.
+     * 
+     * @param nomeArquivo O nome do arquivo que contém os dados do grafo a serem carregados.
+     */
+    public void carregar(String nomeArquivo) throws IOException{
+        File arquivo = new File(nomeArquivo);
+        Scanner ler = new Scanner(arquivo);
+
+        int nVertices = ler.nextInt();
+        int nArestas = ler.nextInt();
+        this.vertices = new ABB<>();
+        this.adjacencia = new ArrayList<>();
+        for(int i = 0; i < nVertices; i++){
+            this.adjacencia.add(new ArrayList<Integer>());
+        }
+
+        for(int i = 0; i< nArestas; i++){
+            int origem = ler.nextInt();
+            int destino = ler.nextInt();
+            int peso = ler.nextInt();
+            addAresta(origem, destino, peso);
+        }
+
+        ler.close();
+    }
+
+    /**
+     * Esta função salva um grafo representado por vértices e listas de adjacências em um arquivo.
+     * 
+     * @param nomeArquivo O parâmetro "nomeArquivo" é uma String que representa o nome do arquivo
+     * onde o gráfico será salvo.
+     */
+    public void salvar(String nomeArquivo) throws IOException{
+        File arquivo = new File(nomeArquivo);
+        FileWriter escrever = new FileWriter(arquivo);
+
+        escrever.write(this.vertices + "" + this.vertices.size() + "\n");
+
+        for(int i = 0; i < this.vertices.size(); i++){
+            for(int j = 0; j < this.adjacencia.get(i).size(); j++){
+                escrever.write(i + " " + this.adjacencia.get(i).get(j) + "\n");
+            }
+        }
+
+        escrever.close();
+    }
+
+    /**
+     * Lista de Adjacência pro grafo
+     */
+    /* this.adjacencia = new ArrayList<>();
+        for (int i = 0; i < nVertices; i++) {
+            this.adjacencia.add(new ArrayList<Integer>());
+        } */
+
+   
 }

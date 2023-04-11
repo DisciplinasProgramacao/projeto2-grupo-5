@@ -1,4 +1,5 @@
 import java.sql.Array;
+import java.util.ArrayList;
 
 /**
  * Classe básica para um Grafo simples não direcionado.
@@ -6,6 +7,7 @@ import java.sql.Array;
 public abstract class Grafo {
     public final String nome;
     protected ABB<Vertice> vertices;
+    protected ArrayList<ArrayList<Integer>> adjacencia;
 
     public static Grafo grafoCompleto(int ordem){
 
@@ -32,16 +34,6 @@ public abstract class Grafo {
     public String nome(){
         return this.nome;
     }
-
-
-    public void carregar(String nomeArquivo){
-
-    }
-
-    public void salvar(String nomeArquivo){
-        
-    }
-
 
     /**
      * Verifica se um vértice com id especificado existe no grafo.
@@ -119,5 +111,4 @@ public abstract class Grafo {
     public int ordem(){
         return this.vertices.size();
     }
-
 }
