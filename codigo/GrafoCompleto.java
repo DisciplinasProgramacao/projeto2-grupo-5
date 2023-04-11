@@ -15,8 +15,8 @@ public class GrafoCompleto extends Grafo{
         }
 
         for(int i = 0; i < ordem; i++){
+            Vertice saida = this.existeVertice(i);
             for (int j = 0; j < ordem; j++){
-                Vertice saida = this.existeVertice(i);
                 if(i != j){
                     saida.addAresta(j);
                 }

@@ -91,6 +91,7 @@ public abstract class Grafo {
         return false;
     }
 
+/*
     public Grafo subGrafo(Lista<Integer> vertices){
         GrafoDirecionado subGrafo = new GrafoDirecionado("subGrafo");
         Integer [] array = new Integer[vertices.size()];
@@ -114,6 +115,7 @@ public abstract class Grafo {
         }
         return subGrafo;
     }
+*/
 
     /**
      * Calcula o tamanho do grafo a partir da soma da quantidade de vértices e arestas
@@ -132,4 +134,5 @@ public abstract class Grafo {
     public int ordem(){
         return this.vertices.size();
     }
+
 }

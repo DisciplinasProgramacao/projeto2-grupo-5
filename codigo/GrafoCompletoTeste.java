@@ -16,6 +16,16 @@ public class GrafoCompletoTeste {
     }
 
     @Test
+    public void deveVerificarSeExisteVertice(){
+        assertEquals(2, grafoTeste.existeVertice(2).getId());
+    }
+
+    @Test
+    public void deveVerificarSeExisteAresta(){
+        assertEquals(3, grafoTeste.existeAresta(2, 3).destino());
+    }
+
+    @Test
     public void deveVerificarAQtdDeArestas(){
         assertEquals(10, grafoTeste.qtdArestas());
     }
