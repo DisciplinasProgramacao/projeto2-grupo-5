@@ -181,7 +181,28 @@ public abstract class Grafo {
      * @return grafo Grafo da busca em profundidade
      */
     public Grafo dfs(int idVerticeInicio) {
-        Grafo grafo = new GrafoNaoDirecionado("teste");
+        GrafoNaoDirecionado grafo = new GrafoNaoDirecionado("teste");
+        Stack<Vertice> fila = new Stack<>();
+        Integer[] array = new Integer[1000];
+
+        Vertice atual = existeVertice(idVerticeInicio);
+
+        fila.push(atual);
+
+        while (!fila.empty()) {
+            atual = fila.pop();
+
+            if (!atual.visitado()) {
+                atual.visitar();
+                grafo.addVertice(atual.getId());
+                for (Integer v : atual.vizinhos().allElements(array)) {
+                    if(v == null) break;
+                    Vertice vertice = existeVertice(v);
+                    fila.add(vertice);
+                }
+            }
+
+        }
 
         return grafo;
     }
