@@ -114,13 +114,5 @@ public abstract class GrafoMutavel  extends Grafo{
         escrever.close();
     }
 
-    /**
-     * Lista de Adjacência pro grafo
-     */
-    /* this.adjacencia = new ArrayList<>();
-        for (int i = 0; i < nVertices; i++) {
-            this.adjacencia.add(new ArrayList<Integer>());
-        } */
-
    
 }
