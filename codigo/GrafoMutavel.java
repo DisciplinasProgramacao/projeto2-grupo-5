@@ -102,7 +102,7 @@ public abstract class GrafoMutavel  extends Grafo{
     public void salvar(String nomeArquivo) throws IOException{
         File arquivo = new File(nomeArquivo);
         FileWriter escrever = new FileWriter(arquivo);
-
+        
         escrever.write(this.vertices + "" + this.vertices.size() + "\n");
 
         for(int i = 0; i < this.vertices.size(); i++){
